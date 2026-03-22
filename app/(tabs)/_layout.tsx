@@ -1,7 +1,6 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 
-
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
@@ -13,27 +12,23 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
       }}>
       <Tabs.Screen
-        name="dashboard" // Ana sayfa dashboard seçildi
+        name="dashboard"
         options={{
-          title: "Dashboard",
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Dashboard',
         }}
       />
       <Tabs.Screen
-        name="inventory" // Envanter sayfası inventory seçildi
+        name="inventory"
         options={{
-          title: "Inventory",
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Inventory',
         }}
       />
       <Tabs.Screen
-        name="stock-movements" // Stock movements sayfası stock-movements seçildi
+        name="stock-movements"
         options={{
-          title: "Stock Movements",
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="arrow.up.arrow.down" color={color} />,
+          title: 'Stock Movements',
         }}
       />
     </Tabs>
