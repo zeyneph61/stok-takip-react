@@ -1,25 +1,14 @@
 export const colors = {
-
   white: "#FFFFFF",
-
   black: "#000000",
-
   lightblue: "#DFF1FF",
-  
   blue: "#1573FE",
-
   lightgreen: "#E8FFEB",
-
   green: "#049C6B",
-
   lightred: "#FFECEF",
-
   red: "#DF1525",
-
   lightyellow: "#F6F3CC",
-
   orange: "#FFB229",
-
 
   gray1: "#FAFAFA",
   gray2: "#F5F5F5",
@@ -31,7 +20,23 @@ export const colors = {
   gray9: "#424242",
   gray10: "#212121",
   gray11: "#111827",
-  
 
+  bg: "#F4F7FC",
+  bgElevated: "#F8FAFF",
+  surface: "#FFFFFF",
+  surfaceSoft: "#F3F7FF",
+  border: "#E3EAF7",
+
+  accent: "#2F8CFF",
+  accentStrong: "#1573FE",
+
+  textPrimary: "#1A243A",
+  textSecondary: "#5F6F8D",
+  textMuted: "#8390A8",
+
+  success: "#26C281",
+  danger: "#FF5A78",
+  warning: "#FFBA55",
+  info: "#69B2FF",
 
 };

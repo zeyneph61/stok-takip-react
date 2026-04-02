@@ -22,7 +22,7 @@ type AppTextProps = TextProps & {
 
 export default function AppText({
   variant = "body",
-  color = colors.black,
+  color = colors.textPrimary,
   style,
   children,
   ...props
@@ -37,5 +37,7 @@ export default function AppText({
 const styles = StyleSheet.create({
   defaultText: {
     includeFontPadding: false,
+    textAlignVertical: "center",
+    fontWeight: "400",
   },
 });

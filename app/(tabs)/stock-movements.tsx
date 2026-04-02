@@ -1,23 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect } from "react";
+import { Text, View } from "react-native";
+import { productService } from "../../services/api";
 
 export default function StockMovementsScreen() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await productService.getAll();
+        console.log("Stock Movements api:", data);
+      } catch (error) {
+        console.error("Fetch hatası:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Stock Movements</Text>
-      <Text>Bu ekran stok giriş çıkış hareketlerini gösterecek.</Text>
+    <View>
+      <Text>Stock Movements Screen</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-});

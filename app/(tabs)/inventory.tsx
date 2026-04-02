@@ -1,23 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect } from "react";
+import { Text, View } from "react-native";
+import { productService } from "../../services/api";
 
 export default function InventoryScreen() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await productService.getAll();
+      console.log("Products api:", data);
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Inventory</Text>
-      <Text>Bu ekran ürün listesini gösterecek.</Text>
+    <View>
+      <Text>Inventory Screen</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-});
