@@ -30,7 +30,7 @@ export const salesReportService = {
   getAll: () => request("/salesreport"),
 };
 
-// ✅ ilerisi için (şimdilik kullanmıyoruz ama hazır)
+//  ilerisi için (şimdilik kullanmıyoruz ama hazır)
 export const categoryService = {
   getAll: () => request("/category"),
 };
