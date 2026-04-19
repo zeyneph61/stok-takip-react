@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Text, View } from "react-native";
-import { productService } from "../../services/api";
+import { stockMovementsService } from "../../services/stockMovementsService";
 
 export default function StockMovementsScreen() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await productService.getAll();
+        const data = await stockMovementsService.getAll();
         console.log("Stock Movements api:", data);
       } catch (error) {
         console.error("Fetch hatası:", error);
