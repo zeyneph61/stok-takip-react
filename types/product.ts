@@ -4,7 +4,13 @@ export interface Product {
   sku: string;
   category: string;
   quantity: number;
-  price: number;
+  buyingPrice?: number;
+  sellPrice?: number;
+  price?: number;
+  thresholdValue?: number;
+  availability?: string;
+  expiryDate?: string;
+  soldLastMonth?: number;
   createdDate?: string;
   modifiedDate?: string;
 }
