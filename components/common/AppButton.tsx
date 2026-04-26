@@ -8,20 +8,23 @@ import AppText from "./AppText";
 type AppButtonProps = {
   title: string;
   onPress?: () => void;
+  containerStyle?: ViewStyle | ViewStyle[];
   style?: ViewStyle | ViewStyle[];
   disabled?: boolean;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "danger";
 };
 
 export default function AppButton({
   title,
   onPress,
+  containerStyle,
   style,
   disabled = false,
   variant = "primary",
 }: AppButtonProps) {
   const isSecondary = variant === "secondary";
   const isGhost = variant === "ghost";
+  const isDanger = variant === "danger";
   const scale = useRef(new Animated.Value(1)).current;
   const lift = useRef(new Animated.Value(0)).current;
 
@@ -45,6 +48,7 @@ export default function AppButton({
 
   return (
     <Pressable
+      style={containerStyle}
       onPress={onPress}
       disabled={disabled}
       onPressIn={() => {
@@ -55,7 +59,6 @@ export default function AppButton({
       onPressOut={() => {
         if (!disabled) {
           runScale(motion.scale.pressOut, motion.duration.normal);
-          runLift(0, motion.duration.normal);
         }
       }}
       onHoverIn={() => {
@@ -74,6 +77,7 @@ export default function AppButton({
           styles.button,
           isSecondary && styles.secondary,
           isGhost && styles.ghost,
+          isDanger && styles.danger,
           disabled && styles.disabled,
           { transform: [{ scale }, { translateY: lift }] },
           style,
@@ -81,8 +85,16 @@ export default function AppButton({
       >
         <AppText
           variant="cardTitle"
+          numberOfLines={1}
+          adjustsFontSizeToFit
           color={
-            isGhost ? colors.textSecondary : isSecondary ? colors.accentStrong : colors.white
+            isDanger
+              ? colors.danger
+              : isGhost
+              ? colors.textSecondary
+              : isSecondary
+              ? colors.accentStrong
+              : colors.white
           }
         >
           {title}
@@ -118,6 +130,12 @@ const styles = StyleSheet.create({
   ghost: {
     backgroundColor: "transparent",
     borderColor: "#D9E6FF",
+    shadowOpacity: 0,
+    elevation: 0,
+  },
+  danger: {
+    backgroundColor: "#FFF3F6",
+    borderColor: "#F8B8C6",
     shadowOpacity: 0,
     elevation: 0,
   },

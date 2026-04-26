@@ -22,7 +22,12 @@ export default function InventoryScreen() {
 
   const categories = useMemo(() => {
     const unique = Array.from(
-      new Set(products.map((item) => item.category).filter(Boolean))
+      new Set(
+        products
+          .filter((item) => item.quantity > 0) // Only include active products
+          .map((item) => item.category)
+          .filter(Boolean)
+      )
     );
     return ["All", ...unique];
   }, [products]);
@@ -30,16 +35,18 @@ export default function InventoryScreen() {
   const filteredProducts = useMemo(() => {
     const normalizedQuery = searchText.trim().toLowerCase();
 
-    return products.filter((item) => {
-      const matchesCategory =
-        selectedCategory === "All" || item.category === selectedCategory;
+    return products
+      .filter((item) => item.quantity > 0) // Hide soft-deleted products (quantity = 0)
+      .filter((item) => {
+        const matchesCategory =
+          selectedCategory === "All" || item.category === selectedCategory;
 
-      const matchesSearch =
-        normalizedQuery.length === 0 ||
-        item.name.toLowerCase().includes(normalizedQuery);
+        const matchesSearch =
+          normalizedQuery.length === 0 ||
+          item.name.toLowerCase().includes(normalizedQuery);
 
-      return matchesCategory && matchesSearch;
-    });
+        return matchesCategory && matchesSearch;
+      });
   }, [products, selectedCategory, searchText]);
 
   const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));

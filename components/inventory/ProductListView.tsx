@@ -16,7 +16,7 @@ export default function ProductListView({
 	onSelectProduct,
 	isLoading = false,
 }: ProductListViewProps) {
-	if (isLoading) {
+	if (isLoading && !products.length) {
 		return (
 			<View style={styles.emptyWrap}>
 				<EmptyStateView
