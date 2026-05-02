@@ -1,9 +1,12 @@
 export interface StockMovement {
   id: number;
   productId: number;
-  productName: string;
+  movementType: "In" | "Out";
   quantity: number;
-  movementType: "in" | "out" | "adjustment";
-  reason?: string;
-  createdDate: string;
+  date: string;
+  product?: {
+    id: number;
+    name: string;
+    category: string;
+  } | null;
 }

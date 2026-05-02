@@ -1,26 +1,26 @@
 import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 import { colors, spacing } from "../../theme";
+import { StockMovement } from "../../types/stockMovement";
 import AppText from "../common/AppText";
 
-export type DateRangeOption = "all" | "today" | "week" | "month";
+export type MovementTypeOption = StockMovement["movementType"] | "all";
 
-const OPTIONS: { value: DateRangeOption; label: string }[] = [
-  { value: "all", label: "All Time" },
-  { value: "today", label: "Today" },
-  { value: "week", label: "This Week" },
-  { value: "month", label: "This Month" },
+const OPTIONS: { value: MovementTypeOption; label: string }[] = [
+  { value: "all", label: "All" },
+  { value: "In", label: "In" },
+  { value: "Out", label: "Out" },
 ];
 
-type MovementDateFilterProps = {
-  selected: DateRangeOption;
-  onSelect: (value: DateRangeOption) => void;
+type MovementTypeFilterProps = {
+  selected: MovementTypeOption;
+  onSelect: (value: MovementTypeOption) => void;
 };
 
-export default function MovementDateFilter({ selected, onSelect }: MovementDateFilterProps) {
+export default function MovementTypeFilter({ selected, onSelect }: MovementTypeFilterProps) {
   return (
     <View style={styles.wrapper}>
       <AppText variant="caption" color={colors.textSecondary}>
-        Date Range
+        Movement Type
       </AppText>
       <ScrollView
         horizontal
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F1F5FB",
   },
   chipActive: {
-    backgroundColor: colors.success,
-    borderColor: colors.success,
+    backgroundColor: colors.accentStrong,
+    borderColor: colors.accentStrong,
   },
 });
