@@ -8,3 +8,4 @@ Oynatma Listesi Linki:https://www.youtube.com/playlist?list=PLXF3AC37_V3V8zHzX1c
 4.Hafta: https://youtu.be/wVfkNKtpt1o
 5.hafta: https://youtu.be/DgCKox4bDX4
 6.hafta: https://youtu.be/EDlkGykJcrw
+7.hafta: https://youtu.be/3Z95ZThmeaY?si=eeq0QFF8dcpc8mSb
