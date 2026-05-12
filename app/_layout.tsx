@@ -31,7 +31,7 @@ export default function RootLayout() {
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
         <Stack.Screen
           name="product-form"
-          options={{ presentation: "modal", title: "Product Form", headerShown: false }}
+          options={{ presentation: "modal", title: "Product Form", headerShown: false, animation: "slide_from_bottom" }}
         />
       </Stack>
       <StatusBar style="auto" />

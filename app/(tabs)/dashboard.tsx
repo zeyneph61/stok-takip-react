@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { useCallback, useEffect, useState } from "react";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 import ScreenWrapper from "../../components/common/ScreenWrapper";
 import SectionHeader from "../../components/common/SectionHeader";
 import BestSellingCategoryCard from "../../components/dashboard/BestSellingCategoryCard";
@@ -18,6 +18,7 @@ export default function DashboardScreen() {
   const [expiryAlerts, setExpiryAlerts] = useState<ExpiryAlert[]>([]);
   const [salesReports, setSalesReports] = useState<SalesReport[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   const lowStockCount = lowStockAlerts.length;
   const expiringCount = expiryAlerts.length;
@@ -83,42 +84,48 @@ export default function DashboardScreen() {
     }
   }
 
-  useEffect(() => {
-    const fetchDashboardData = async () => {
-      try {
-        setIsLoading(true);
+  const fetchDashboardData = useCallback(async (isRefresh = false) => {
+    try {
+      if (isRefresh) setRefreshing(true);
+      else setIsLoading(true);
 
-        const [productsData, lowStockData, expiredData, salesData] =
-          await Promise.all([
-            dashboardService.getProducts(),
-            dashboardService.getLowStockAlerts(),
-            dashboardService.getExpiryAlerts(),
-            dashboardService.getTopSelling(10),
-          ]);
+      const [productsData, lowStockData, expiredData, salesData] =
+        await Promise.all([
+          dashboardService.getProducts(),
+          dashboardService.getLowStockAlerts(),
+          dashboardService.getExpiryAlerts(),
+          dashboardService.getTopSelling(10),
+        ]);
 
-        setProducts(Array.isArray(productsData) ? productsData : []);
-        setLowStockAlerts(Array.isArray(lowStockData) ? lowStockData : []);
-        setExpiryAlerts(Array.isArray(expiredData) ? expiredData : []);
-        setSalesReports(Array.isArray(salesData) ? salesData : []);
-      } catch (err) {
-        console.error("Dashboard fetch hatası:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchDashboardData();
+      setProducts(Array.isArray(productsData) ? productsData : []);
+      setLowStockAlerts(Array.isArray(lowStockData) ? lowStockData : []);
+      setExpiryAlerts(Array.isArray(expiredData) ? expiredData : []);
+      setSalesReports(Array.isArray(salesData) ? salesData : []);
+    } catch (err) {
+      console.error("Dashboard fetch hatası:", err);
+    } finally {
+      setIsLoading(false);
+      setRefreshing(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, [fetchDashboardData]);
 
   return (
     <ScreenWrapper>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={() => fetchDashboardData(true)} />
+        }
       >
         <SectionHeader
           title="Dashboard"
           subtitle="Stock management overview"
+          eyebrow={new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
         />
 
         <View style={styles.statsGrid}>

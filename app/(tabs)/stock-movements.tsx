@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 import AppCard from "../../components/common/AppCard";
 import AppText from "../../components/common/AppText";
 import EmptyStateView from "../../components/common/EmptyStateView";
@@ -32,23 +32,28 @@ function getDateRangeStart(range: DateRangeOption): Date | null {
 export default function StockMovementsScreen() {
   const [movements, setMovements] = useState<StockMovement[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [selectedType, setSelectedType] = useState<MovementTypeOption>("all");
   const [selectedDate, setSelectedDate] = useState<DateRangeOption>("all");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await stockMovementsService.getAll();
-        setMovements(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error("Stock movements fetch error:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+  const fetchData = useCallback(async (isRefresh = false) => {
+    try {
+      if (isRefresh) setRefreshing(true);
+      else setLoading(true);
+      const data = await stockMovementsService.getAll();
+      setMovements(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Stock movements fetch error:", error);
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const filtered = useMemo(() => {
     const query = searchText.trim().toLowerCase();
@@ -82,6 +87,9 @@ export default function StockMovementsScreen() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.pageContent}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={() => fetchData(true)} />
+        }
       >
         <SectionHeader
           title="Stock Movements"

@@ -1,6 +1,6 @@
 import { router } from "expo-router";
-import { useEffect, useMemo, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, View } from "react-native";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Pressable, RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 import AppButton from "../../components/common/AppButton";
 import AppCard from "../../components/common/AppCard";
 import AppText from "../../components/common/AppText";
@@ -19,6 +19,7 @@ export default function InventoryScreen() {
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  const [refreshing, setRefreshing] = useState(false);
 
   const categories = useMemo(() => {
     const unique = Array.from(
@@ -60,24 +61,30 @@ export default function InventoryScreen() {
     setCurrentPage(1);
   }, [searchText, selectedCategory]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await inventoryService.getProducts();
-        setProducts(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error("Inventory fetch error:", error);
-      }
-    };
-
-    fetchData();
+  const fetchData = useCallback(async (isRefresh = false) => {
+    try {
+      if (isRefresh) setRefreshing(true);
+      const data = await inventoryService.getProducts();
+      setProducts(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Inventory fetch error:", error);
+    } finally {
+      setRefreshing(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   return (
     <ScreenWrapper>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.pageContent}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={() => fetchData(true)} />
+        }
       >
         <SectionHeader
           title="Inventory"
