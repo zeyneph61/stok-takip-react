@@ -2,11 +2,12 @@ Açıklama videoları hem githuba yüklü hem de youtube linkleri:
 
 Oynatma Listesi Linki:https://www.youtube.com/playlist?list=PLXF3AC37_V3V8zHzX1ciSraWMQpOIlINQ
 
-1.Hafta: https://youtu.be/DgCKox4bDX4
-2.Hafta: https://youtu.be/wGZm5tXIeFg
-3.Hafta: https://youtu.be/J7jQANgrHfI
-4.Hafta: https://youtu.be/wVfkNKtpt1o
+1.hafta: https://youtu.be/DgCKox4bDX4
+2.hafta: https://youtu.be/wGZm5tXIeFg
+3.hafta: https://youtu.be/J7jQANgrHfI
+4.hafta: https://youtu.be/wVfkNKtpt1o
 5.hafta: https://youtu.be/DgCKox4bDX4
 6.hafta: https://youtu.be/EDlkGykJcrw
 7.hafta: https://youtu.be/3Z95ZThmeaY?si=eeq0QFF8dcpc8mSb
 8.hafta: https://youtu.be/Ed9qFvg3Ua0?si=_-_sXOsNNYwsSCG1
+9.hafta: https://youtu.be/2JY7rNLz5ko?si=vUyhoOsCkZpKhXg0
