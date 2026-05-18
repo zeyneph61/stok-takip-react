@@ -248,8 +248,6 @@ export default function ProductFormScreen() {
         expiryDate: noExpiryDate ? undefined : expiryDate ? new Date(expiryDate).toISOString() : undefined,
       };
 
-      console.log("[SAVE] Payload:", JSON.stringify(basePayload));
-
       if (isEditMode && selectedProductId) {
         await inventoryService.updateProduct(selectedProductId, basePayload);
       } else {
@@ -263,11 +261,6 @@ export default function ProductFormScreen() {
         router.back();
       }, 1200);
     } catch (error) {
-      if (error instanceof ApiError) {
-        console.error("[SAVE] Status:", error.status, "| Backend mesajı:", error.details);
-      } else {
-        console.error("[SAVE] Beklenmeyen hata:", error);
-      }
       setErrorMessage("We could not save the product. Please try again.");
     } finally {
       setIsSaving(false);
@@ -299,21 +292,16 @@ export default function ProductFormScreen() {
   };
 
   const performDelete = async () => {
-    console.log(">>> [DELETE] performDelete called");
     setErrorMessage("");
     setIsDeleting(true);
     try {
-      console.log(`[DELETE] Starting delete for product ID: ${selectedProductId}`);
       const result = await inventoryService.deleteProduct(selectedProductId!);
-      console.log(`[DELETE] Success! Result:`, result);
       setSuccessMessage("Product deleted successfully!");
       setTimeout(() => {
         router.back();
       }, 1000);
     } catch (error) {
-      console.log(`[DELETE] Error caught:`, error);
       if (error instanceof ApiError) {
-        console.log(`[DELETE] API Error - Status: ${error.status}, Details: ${error.details}`);
         if (error.status === 409 || isDeleteRelationConflict(error.details)) {
           setErrorMessage("This product cannot be deleted right now.");
         } else if (error.status === 404) {
@@ -325,7 +313,6 @@ export default function ProductFormScreen() {
         setErrorMessage("We could not delete the product. Please try again.");
       }
     } finally {
-      console.log(">>> [DELETE] performDelete finally block");
       setIsDeleting(false);
     }
   };

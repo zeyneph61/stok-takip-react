@@ -19,6 +19,7 @@ export default function InventoryScreen() {
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
 
   const categories = useMemo(() => {
@@ -64,11 +65,13 @@ export default function InventoryScreen() {
   const fetchData = useCallback(async (isRefresh = false) => {
     try {
       if (isRefresh) setRefreshing(true);
-      const data = await inventoryService.getProducts();
+      else setIsLoading(true);
+      const data = await inventoryService.getProducts({ forceRefresh: isRefresh });
       setProducts(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Inventory fetch error:", error);
     } finally {
+      setIsLoading(false);
       setRefreshing(false);
     }
   }, []);
@@ -153,6 +156,7 @@ export default function InventoryScreen() {
 
         <ProductListView
           products={paginatedProducts}
+          isLoading={isLoading}
         />
 
         <View style={styles.paginationWrap}>
