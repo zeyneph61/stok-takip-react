@@ -103,7 +103,7 @@ Tüm haftalara ait açıklama videoları YouTube oynatma listesinde mevcuttur:
 | 4. Hafta | Dashboard ekranı, metrik kartlar, best sellers | [İzle](https://youtu.be/wVfkNKtpt1o) |
 | 5. Hafta | Inventory ekranı, arama ve kategori filtresi | [İzle](https://youtu.be/DgCKox4bDX4) |
 | 6. Hafta | Product Form (ekleme/düzenleme/silme), form doğrulama | [İzle](https://youtu.be/EDlkGykJcrw) |
-| 7. Hafta | Stock Movements ekranı, filtreleme, özet istatistikler | [İzle](https://youtu.be/3Z95ZThmeaY) |
-| 8. Hafta | Pull-to-refresh, animasyonlar, UI iyileştirmeleri | [İzle](https://youtu.be/Ed9qFvg3Ua0) |
-| 9. Hafta | Genel test, hata düzeltmeleri, kod temizliği | [İzle](https://youtu.be/2JY7rNLz5ko) |
+| 7. Hafta | Stock Movements ekranı, filtreleme, özet istatistikler | [İzle](https://youtu.be/3Z95ZThmeaY?si=eeq0QFF8dcpc8mSb) |
+| 8. Hafta | Pull-to-refresh, animasyonlar, UI iyileştirmeleri | [İzle](https://youtu.be/Ed9qFvg3Ua0?si=_-_sXOsNNYwsSCG1) |
+| 9. Hafta | Genel test, hata düzeltmeleri, kod temizliği | [İzle](https://youtu.be/2JY7rNLz5ko?si=vUyhoOsCkZpKhXg0) |
 | 10. Hafta | Proje tamamlama, dokümantasyon, sunum hazırlığı | — |
