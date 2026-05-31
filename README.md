@@ -26,10 +26,10 @@ Oynatma Listesi: https://www.youtube.com/playlist?list=PLXF3AC37_V3V8zHzX1ciSraW
 React Native (Expo) ile geliştirilmiş bir stok takip uygulamasıdır. Ürün envanterini yönetmek, stok giriş/çıkış hareketlerini takip etmek ve genel durumu izlemek için kullanılır. Mevcut bir backend API'ye bağlanarak çalışır.
 
 **Ekranlar:**
-- **Dashboard** – toplam ürün, düşük stok, süresi yaklaşan ve tükenen ürün sayıları; en çok satan kategoriler
-- **Inventory** – ürün listesi, ada ve kategoriye göre arama/filtreleme
-- **Product Form** – ürün ekleme, düzenleme ve silme
-- **Stock Movements** – stok giriş/çıkış hareketleri, tip ve tarihe göre filtreleme
+- **Dashboard**  toplam ürün, düşük stok, süresi yaklaşan ve tükenen ürün sayıları; en çok satan kategoriler
+- **Inventory**  ürün listesi, ada ve kategoriye göre arama/filtreleme
+- **Product Form**  ürün ekleme, düzenleme ve silme
+- **Stock Movements**  stok giriş/çıkış hareketleri, tip ve tarihe göre filtreleme
 
 **Kullanılan teknolojiler:** React Native, Expo, Expo Router, TypeScript
 
