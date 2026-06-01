@@ -6,7 +6,10 @@
       "PowerShell(dir \"C:\\\\Users\\\\Asus\\\\stok-takip-react\\\\components\" -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object FullName)",
       "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Asus\\\\stok-takip-react\\\\app\" -Recurse | ForEach-Object { $_.FullName })",
       "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Asus\\\\stok-takip-react\\\\components\" -Recurse | ForEach-Object { $_.FullName })",
-      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Asus\\\\stok-takip-react\\\\theme\" | ForEach-Object { $_.FullName })"
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Asus\\\\stok-takip-react\\\\theme\" | ForEach-Object { $_.FullName })",
+      "PowerShell(Get-ChildItem C:\\\\Users\\\\Asus\\\\stok-takip-react\\\\app -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object FullName)",
+      "PowerShell(Get-ChildItem C:\\\\Users\\\\Asus\\\\stok-takip-react\\\\components -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object FullName)",
+      "PowerShell(git *)"
     ]
   }
 }
