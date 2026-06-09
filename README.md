@@ -17,7 +17,7 @@ Oynatma Listesi: https://www.youtube.com/playlist?list=PLXF3AC37_V3V8zHzX1ciSraW
 7. Hafta: https://youtu.be/3Z95ZThmeaY?si=eeq0QFF8dcpc8mSb
 8. Hafta: https://youtu.be/Ed9qFvg3Ua0?si=_-_sXOsNNYwsSCG1
 9. Hafta: https://youtu.be/2JY7rNLz5ko?si=vUyhoOsCkZpKhXg0
-10. Hafta: —
+10. Hafta: https://youtu.be/7O0u-AoXEVA
 
 ---
 
